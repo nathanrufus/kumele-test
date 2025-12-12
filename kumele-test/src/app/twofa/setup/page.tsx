@@ -1,5 +1,12 @@
 // src/app/twofa/setup/page.tsx
-import { SignedIn, SignedOut, SignInButton, UserProfile } from "@clerk/nextjs";
+"use client";
+
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  UserProfile,
+} from "@clerk/nextjs";
 
 export default function TwoFASetupPage() {
   return (
@@ -9,9 +16,9 @@ export default function TwoFASetupPage() {
       </h1>
 
       <p className="max-w-xl text-sm text-slate-600 dark:text-slate-300">
-        Here you can enable 2-factor authentication using an authenticator app
-        like Google Authenticator or Microsoft Authenticator. Clerk will
-        generate a QR code and verify 6-digit TOTP codes automatically.
+        Enable 2-factor authentication using an authenticator app like Google
+        Authenticator or Microsoft Authenticator. Clerk will generate a QR code
+        and verify 6-digit TOTP codes automatically.
       </p>
 
       <SignedOut>
@@ -30,6 +37,7 @@ export default function TwoFASetupPage() {
       <SignedIn>
         <div className="rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-950">
           <UserProfile
+            routing="hash" // ✅ use hash-based routing so no catch-all route is required
             appearance={{
               elements: {
                 rootBox: "w-full",
